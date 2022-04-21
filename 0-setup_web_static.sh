@@ -11,8 +11,11 @@ sudo ufw allow 'Nginx HTTP'
 #---create directories for storing static web pages
 sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
 
+#---give ownership of /data folder to ubuntu user and group
+sudo chown -R ubuntu:ubuntu /data
+
 #---create file and test string for testing
-echo "<h1>Welcome to beldine-moturi.tech!<h1>" > /data/web_static/releases/test/index.html
+echo "Welcome to beldine-moturi.tech!" > /data/web_static/releases/test/index.html
 
 #---create symbolic link to the test folder; delete it if it exists
 if [ -d /data/web_static/current ]; then
@@ -20,11 +23,8 @@ if [ -d /data/web_static/current ]; then
 fi
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
-#---give ownership of /data folder to ubuntu user and group
-sudo chown -R ubuntu:ubuntu /data
-
 #---update nginx configuraion file
-sed -i 's/server_name\(.*\)/&\n\tlocation /hbnb_static/ {\n\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
+sudo sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
 #---restart nginx
 sudo service nginx restart
