@@ -7,9 +7,14 @@ import os.path
 
 
 def do_pack():
-    """genearates a .tgz archive from contents
-    of the web_static folder
+    """Distributes an archive to a web server.
+    Args:
+        archive_path (str): The path of the archive to distribute.
+    Returns:
+        If the file doesn't exist at archive_path or an error occurs - False.
+        Otherwise - True.
     """
+
     local("mkdir -p versions")
     path = "versions/web_static_{}.tgz".format(
         datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")
@@ -21,8 +26,9 @@ def do_pack():
 
 
 def do_deploy(arhive_path):
-    """distributes an archive to 2 web servers
-    archive_path: the path to the archive file to deploy
+    """Deploys the static files to the host servers.
+    Args:
+        archive_path (str): The path to the archived static files.
     """
 
     env.user = "ubuntu"
