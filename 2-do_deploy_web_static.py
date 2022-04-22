@@ -31,9 +31,9 @@ def do_deploy(arhive_path):
         archive_path (str): The path to the archived static files.
     """
 
-    env.user = "ubuntu"
+    # env.user = "ubuntu"
     env.hosts = ['34.148.201.37'. '34.204.181.101']
-    env.key_filename = "~/.ssh/ssh_key"
+    # env.key_filename = "~/.ssh/ssh_key"
 
     if not os.path.exists(archive_path):
         return False
