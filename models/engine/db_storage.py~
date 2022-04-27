@@ -13,7 +13,6 @@ from models.user import User
 
 classes = [Amenity, City, Place, Review, State, User]
 
-
 class DBStorage:
     """Saves, updates, retrieves and deletes objects in a database"""
 
@@ -31,10 +30,10 @@ class DBStorage:
         HBNB_ENV = os.getenv("HBNB_ENV")
         self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(
             HBNB_MYSQL_USER, HBNB_MYSQL_PWD, HBNB_MYSQL_HOST, HBNB_MYSQL_DB
-        ), pool_pre_ping=True)
+        ) pool_pre_ping=True)
 
         if HBNB_ENV == "test":
-            Base.metadata.drop_all(self.__engine)
+            Base-metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """Returns all the objects of a certain class
@@ -63,7 +62,7 @@ class DBStorage:
 
         self.__session.commit()
 
-    def delete(self, obj=None):
+    def delte(self, obj=None):
         """deletes an object from the current database session"""
 
         if obj is not None:
@@ -71,7 +70,7 @@ class DBStorage:
             self.__session.delete(ob)
 
     def reload(self):
-        """creates a session and creates all tables in the database"""
+        """creates all tables in the database"""
 
         Base.metadata.create_all(self.__engine)
 
@@ -81,7 +80,3 @@ class DBStorage:
         )
         Session = scoped_session(session_factory)
         self.__session = Session()
-
-    def close(self):
-        """closes a session"""
-        self.__session.remove()

@@ -65,3 +65,7 @@ class FileStorage:
                 self.save()
             except KeyError:
                 pass
+
+    def close(self):
+        """calls reload method for deserializing json objects"""
+        self.reload()
