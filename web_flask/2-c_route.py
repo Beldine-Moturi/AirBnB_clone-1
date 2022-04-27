@@ -2,6 +2,10 @@
 """
 Starts a minimal flask application
 listening on 0.0.0.0:5000
+Routes:
+    / - display "Hello HBNB!"
+    /hbnb - display "HBNB"
+    /c/<text> - display "C <text>"
 """
 from flask import Flask
 
@@ -20,11 +24,11 @@ def hbnb():
     return "HBNB"
 
 
-@app.route('/c/<text>', strict_slashes=False)
+@app.route('/c/<string:text>', strict_slashes=False)
 def display_text(text):
     """Displays C followed by the input parameter <text>"""
     new_text = text.replace("_", " ")
-    return f"C {new_text}"
+    return "C %s" % new_text
 
 
 if __name__ == "__main__":
