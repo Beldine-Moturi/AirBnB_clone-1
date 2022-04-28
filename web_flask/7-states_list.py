@@ -11,18 +11,18 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 
-@app.route('/states_list')
+@app.route('/states_list', strict_slashes=False)
 def display_states():
     """display a HTML page: (inside the tag BODY)"""
     states = storage.all(State)
     return render_template('7-states_list.html', states=states.values())
 
 
-@app.teardown_appcontext
-def close_db_session(exception):
-    """removes the current SQLAlchemy Session
-    after each request"""
-    storage.close()
+#@app.teardown_appcontext
+#def close_db_session(exception):
+#    """removes the current SQLAlchemy Session
+#    after each request"""
+#    storage.close()
 
 if __name__ == "__main__":
     """run flask web app"""
