@@ -23,7 +23,10 @@ class DBStorage:
     def __init__(self):
         """Instantiates objects of this class
         creates the engine for our database"""
-
+        os.environ["HBNB_MYSQL_USER"] = "hbnb_dev"
+        os.environ["HBNB_MYSQL_PWD"] = "hbnb_dev_pwd"
+        os.environ["HBNB_MYSQL_HOST"] = "localhost"
+        os.environ["HBNB_MYSQL_DB"] = "hbnb_dev_db"
         HBNB_MYSQL_USER = os.getenv("HBNB_MYSQL_USER")
         HBNB_MYSQL_PWD = os.getenv("HBNB_MYSQL_PWD")
         HBNB_MYSQL_HOST = os.getenv("HBNB_MYSQL_HOST")
