@@ -27,4 +27,4 @@ def close_db_session(exception):
 
 if __name__ == "__main__":
     """run flask web app"""
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0')
