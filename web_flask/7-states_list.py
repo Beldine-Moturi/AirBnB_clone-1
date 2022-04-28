@@ -18,11 +18,12 @@ def display_states():
     return render_template('7-states_list.html', states=states.values())
 
 
-#@app.teardown_appcontext
-#def close_db_session(exception):
-#    """removes the current SQLAlchemy Session
-#    after each request"""
-#    storage.close()
+@app.teardown_appcontext
+def close_db_session(exception):
+    """removes the current SQLAlchemy Session
+    after each request"""
+    storage.close()
+
 
 if __name__ == "__main__":
     """run flask web app"""
